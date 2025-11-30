@@ -160,8 +160,11 @@ function MonkeySpeed_OnUpdate(arg1)
 			if (zonenum ~= 0) then
 				contnum = GetCurrentMapContinent();
 				--f,h,w = GetMapInfo();
-
+				
 				--quel fix. Was throwing a nil error when entering a previously un-encountered zone.
+				if MonkeySpeedConfig.m_ZoneBaseline[contnum] == nil then
+					MonkeySpeedConfig.m_ZoneBaseline[contnum] = {}
+				end
 				if (MonkeySpeedConfig.m_ZoneBaseline[contnum][zonenum] == nil) then
 					MonkeySpeedConfig.m_ZoneBaseline[contnum][zonenum] = {zid=zonenum, rate=.0001, name=zonename};
 				end
@@ -379,3 +382,4 @@ function MonkeySpeedOptions()
 	end
 
 end
+
